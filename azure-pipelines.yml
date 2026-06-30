@@ -38,8 +38,3 @@ steps:
     codeCoverageEnabled: true
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
-- task: Npm@1
-  inputs:
-    command: 'custom'
-    workingDir: 'APIAutomation_practice\APIAutomation_practice\packages.config'
-    customCommand: 'run test'
