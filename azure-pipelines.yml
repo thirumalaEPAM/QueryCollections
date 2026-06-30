@@ -16,28 +16,17 @@ variables:
 steps:
 - task: NuGetToolInstaller@1
 
+
 - task: NuGetCommand@2
   inputs:
-    restoreSolution: '$(solution)'
+    command: 'restore'
+    restoreSolution: 'APIAutomation_practice\APIAutomation_practice.sln'
+    feedsToUse: 'select'
 
 - task: VSBuild@1
   inputs:
-    solution: '$(solution)'
-    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DesktopBuildPackageLocation="$(build.artifactStagingDirectory)\WebApp.zip" /p:DeployIisAppPath="Default Web Site"'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
-
-- task: VSTest@3
-  inputs:
-    testSelector: 'testAssemblies'
-    testAssemblyVer2: |
-      **\bin\**\*test.dll
-      **\bin\**\*tests.dll
-    searchFolder: '$(System.DefaultWorkingDirectory)'
-    runTestsInIsolation: true
-    codeCoverageEnabled: true
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+    solution: 'APIAutomation_practice\APIAutomation_practice.sln'
+    vsVersion: '17.0'
 
 - task: PublishBuildArtifacts@1
   inputs:
